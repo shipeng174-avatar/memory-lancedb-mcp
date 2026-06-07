@@ -117,7 +117,7 @@ GitHub Actions publish:
 2. Add it to the GitHub repository secrets as `NPM_TOKEN`.
 3. Open Actions -> `Publish to npm` -> Run workflow.
 
-The publish workflow runs `npm ci`, `npm test`, `npm run smoke`, and then `npm publish --access public`.
+The publish workflow runs `npm ci`, `npm test`, `npm run smoke`, and then `npm publish --access public --provenance`.
 
 Edit `.env`:
 
