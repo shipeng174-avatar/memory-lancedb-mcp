@@ -1,0 +1,43 @@
+{
+  "name": "memory-lancedb-mcp",
+  "version": "0.1.0",
+  "description": "LanceDB long-term memory MCP server with SiliconFlow/OpenAI-compatible embeddings.",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "memory-lancedb-mcp": "dist/index.js",
+    "memory-lancedb-mcp-cli": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "smoke": "npm run build && node scripts/list-tools.mjs && node dist/cli.js help",
+    "test": "npm run build && node --test test/*.test.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "mcp",
+    "lancedb",
+    "memory",
+    "siliconflow",
+    "embeddings"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@lancedb/lancedb": "^0.20.0",
+    "@modelcontextprotocol/sdk": "^1.13.0",
+    "dotenv": "^16.4.7",
+    "uuid": "^11.0.5",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

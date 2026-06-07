@@ -1,0 +1,29 @@
+{
+  "mcpServers": {
+    "memory-lancedb": {
+      "command": "node",
+      "args": ["C:/absolute/path/to/memory-lancedb-mcp/dist/index.js"],
+      "description": "Long-term memory: store, recall, extract, index, import, export, and prune LanceDB memories with SiliconFlow embeddings.",
+      "env": {
+        "SILICONFLOW_API_KEY": "replace_with_your_key",
+        "EMBEDDING_BASE_URL": "https://api.siliconflow.cn/v1",
+        "EMBEDDING_MODEL": "BAAI/bge-m3",
+        "EXTRACTION_ENABLED": "true",
+        "EXTRACTION_BASE_URL": "https://api.siliconflow.cn/v1",
+        "EXTRACTION_MODEL": "Qwen/Qwen2.5-7B-Instruct",
+        "RERANK_ENABLED": "false",
+        "RERANK_BASE_URL": "https://api.siliconflow.cn/v1",
+        "RERANK_MODEL": "BAAI/bge-reranker-v2-m3",
+        "CANONICAL_CORPUS_ENABLED": "true",
+        "CANONICAL_ROOT": "C:/absolute/path/to/your/project",
+        "SESSION_TRANSCRIPTS_ENABLED": "true",
+        "SESSION_TRANSCRIPTS_ROOT": "C:/absolute/path/to/session/jsonl/folder",
+        "LANCEDB_PATH": "C:/absolute/path/to/.openclacky/memory/lancedb",
+        "LANCEDB_TABLE": "memories",
+        "DEFAULT_SCOPE": "global",
+        "RETRIEVAL_MODE": "hybrid",
+        "DECAY_ENABLED": "true"
+      }
+    }
+  }
+}
