@@ -101,6 +101,8 @@ The GitHub Actions workflow in `.github/workflows/ci.yml` runs the same build, t
 
 The package name `memory-lancedb-mcp` is intended to publish as a public npm package.
 
+Local publish:
+
 ```bash
 npm login
 npm test
@@ -108,6 +110,14 @@ npm run smoke
 npm run pack:check
 npm publish --access public
 ```
+
+GitHub Actions publish:
+
+1. Create an npm access token with publish permission.
+2. Add it to the GitHub repository secrets as `NPM_TOKEN`.
+3. Open Actions -> `Publish to npm` -> Run workflow.
+
+The publish workflow runs `npm ci`, `npm test`, `npm run smoke`, and then `npm publish --access public`.
 
 Edit `.env`:
 
