@@ -1,8 +1,8 @@
 {
   "mcpServers": {
     "memory-lancedb": {
-      "command": "node",
-      "args": ["C:/absolute/path/to/memory-lancedb-mcp/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "memory-lancedb-mcp"],
       "description": "Long-term memory: store, recall, extract, index, import, export, and prune LanceDB memories with SiliconFlow embeddings.",
       "env": {
         "SILICONFLOW_API_KEY": "replace_with_your_key",

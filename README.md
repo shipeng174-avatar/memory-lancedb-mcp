@@ -63,7 +63,29 @@ See `docs/parity.md` for a detailed map between `memory-lancedb-pro` plugin feat
 - A SiliconFlow API key
 - Network access to `https://api.siliconflow.cn`
 
-## Setup
+## Install From npm
+
+After the package is published, OpenClacky can run it directly with `npx`; users do not need to clone or build the source.
+
+```bash
+npx -y memory-lancedb-mcp
+```
+
+For global installation:
+
+```bash
+npm install -g memory-lancedb-mcp
+memory-lancedb-mcp
+```
+
+For CLI maintenance commands after global installation:
+
+```bash
+memory-lancedb-mcp-cli stats
+memory-lancedb-mcp-cli export --scope global --output backup.json
+```
+
+## Source Setup
 
 ```powershell
 npm install
@@ -74,6 +96,18 @@ npm run smoke
 ```
 
 The GitHub Actions workflow in `.github/workflows/ci.yml` runs the same build, test, and MCP smoke checks after the project is pushed to GitHub.
+
+## Publish To npm
+
+The package name `memory-lancedb-mcp` is intended to publish as a public npm package.
+
+```bash
+npm login
+npm test
+npm run smoke
+npm run pack:check
+npm publish --access public
+```
 
 Edit `.env`:
 
@@ -127,14 +161,14 @@ Or put it in a project-local config:
 
 Both files are loaded. If a project config defines the same server name as the global config, the project config wins.
 
-Use absolute paths for `dist/index.js` and `LANCEDB_PATH` because an MCP stdio server's working directory may not be the project directory.
+Use an absolute `LANCEDB_PATH` because an MCP stdio server's working directory may not be the project directory.
 
 ```json
 {
   "mcpServers": {
     "memory-lancedb": {
-      "command": "node",
-      "args": ["C:/Users/czy58/Documents/api/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "memory-lancedb-mcp"],
       "description": "Long-term memory: store, recall, update, forget, and inspect LanceDB memories with SiliconFlow embeddings.",
       "env": {
         "SILICONFLOW_API_KEY": "your_key_here",
@@ -163,7 +197,7 @@ Do not commit your API key. Keep it in the client MCP config or a local `.env`.
 
 OpenClacky starts MCP processes lazily on first use and shuts idle servers down after about 5 minutes, so this server should not run continuously unless a client is actively using it.
 
-If OpenClacky cannot find `node`, replace `"command": "node"` with the absolute path to your Node.js executable, or make sure Node is available in the environment that launches OpenClacky.
+If OpenClacky cannot find `npx`, install the package globally with `npm install -g memory-lancedb-mcp` and use `"command": "memory-lancedb-mcp"` with an empty `args` array.
 
 `.env` is only a local development convenience. For OpenClacky usage, prefer putting required variables in the MCP server's `env` block.
 
@@ -237,11 +271,11 @@ If OpenClacky cannot find `node`, replace `"command": "node"` with the absolute 
 The MCP server is the primary interface, but a small CLI is included for backup and maintenance:
 
 ```powershell
-node dist/cli.js stats
-node dist/cli.js export --scope global --output backup.json
-node dist/cli.js import --input backup.json --scope global
-node dist/cli.js decay-preview --scope global
-node dist/cli.js prune --scope global --yes
+memory-lancedb-mcp-cli stats
+memory-lancedb-mcp-cli export --scope global --output backup.json
+memory-lancedb-mcp-cli import --input backup.json --scope global
+memory-lancedb-mcp-cli decay-preview --scope global
+memory-lancedb-mcp-cli prune --scope global --yes
 ```
 
 `prune` defaults to dry run unless `--yes` is passed.

@@ -15,8 +15,8 @@ Create `<project>/.clacky/mcp.json`:
 {
   "mcpServers": {
     "memory-lancedb": {
-      "command": "node",
-      "args": ["C:/Users/czy58/Documents/api/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "memory-lancedb-mcp"],
       "description": "Long-term memory: store, recall, update, forget, and inspect LanceDB memories with SiliconFlow embeddings.",
       "env": {
         "SILICONFLOW_API_KEY": "your_key_here",
@@ -41,7 +41,7 @@ Create `<project>/.clacky/mcp.json`:
 }
 ```
 
-Use absolute paths. If `node` is not found by OpenClacky, set `command` to the absolute Node executable path.
+Use absolute paths for data directories such as `LANCEDB_PATH`. If `npx` is not found by OpenClacky, install globally with `npm install -g memory-lancedb-mcp` and set `command` to `memory-lancedb-mcp`.
 
 ## Suggested Agent Behavior
 

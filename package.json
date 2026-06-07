@@ -4,6 +4,7 @@
   "description": "LanceDB long-term memory MCP server with SiliconFlow/OpenAI-compatible embeddings.",
   "type": "module",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "bin": {
     "memory-lancedb-mcp": "dist/index.js",
     "memory-lancedb-mcp-cli": "dist/cli.js"
@@ -11,6 +12,9 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsx src/index.ts",
+    "pack:check": "npm pack --dry-run",
+    "prepack": "npm run build",
+    "prepublishOnly": "npm test && npm run smoke",
     "start": "node dist/index.js",
     "smoke": "npm run build && node scripts/list-tools.mjs && node dist/cli.js help",
     "test": "npm run build && node --test test/*.test.mjs",
@@ -23,8 +27,27 @@
     "siliconflow",
     "embeddings"
   ],
-  "author": "",
+  "author": "shipeng174-avatar <shipeng174@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shipeng174-avatar/memory-lancedb-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shipeng174-avatar/memory-lancedb-mcp/issues"
+  },
+  "homepage": "https://github.com/shipeng174-avatar/memory-lancedb-mcp#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "docs",
+    "examples",
+    ".env.example",
+    "README.md",
+    "LICENSE"
+  ],
   "dependencies": {
     "@lancedb/lancedb": "^0.20.0",
     "@modelcontextprotocol/sdk": "^1.13.0",
@@ -39,5 +62,10 @@
   },
   "engines": {
     "node": ">=20"
+  },
+  "directories": {
+    "doc": "docs",
+    "example": "examples",
+    "test": "test"
   }
 }
